@@ -19,10 +19,13 @@ import java.util.List;
 public class User {
     @GeneratedValue
     @Id
-    private int id;
+    private Integer id;
     private String name;
     private String lastname;
+    @Column(unique = true)
+    private String username;
     @OneToMany(targetEntity = Spending.class, cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id")
     private List<Spending> spending;
-    
+
 }

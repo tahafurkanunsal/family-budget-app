@@ -1,13 +1,15 @@
 package tahafurkan.sandbox.familybudgetapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
 @Entity
 @Table(name = "spendings")
 @Data
@@ -17,10 +19,15 @@ import lombok.Data;
 @Setter
 public class Spending {
 
+    @GeneratedValue
     @Id
-    private int id;
-    private String spendingCategory;
-    private String spendingDate;
-    private String spendingDescription;
+    private Integer id;
+    private double amount;
+    private String month;
+    private Category category;
+    private String description;
+}
 
+enum Category {
+    MARKET,SCHOOL,BILLS,MOBILEPHONEBILL,TRANSPORTATION;
 }
