@@ -25,6 +25,9 @@ public class Spending {
     @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private User user;
+    @OneToOne(targetEntity = Spending.class , cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id")
+    private SpendingDetails spendingDetails;
 
 
 }

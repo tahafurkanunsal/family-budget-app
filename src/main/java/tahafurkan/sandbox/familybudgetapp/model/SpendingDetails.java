@@ -26,8 +26,6 @@ public class SpendingDetails {
     private String productName;
     private double price;
     private String description;
-    @ManyToOne(targetEntity = Spending.class , cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "id")
-    private Spending spending;
+
 
 }
