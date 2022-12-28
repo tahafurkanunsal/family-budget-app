@@ -6,25 +6,19 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import tahafurkan.sandbox.familybudgetapp.enums.BillTypes;
-import tahafurkan.sandbox.familybudgetapp.enums.SpendingTypes;
-
-import java.util.List;
 
 @Entity
-@Table(name = "spending details")
+@Table(name = "spendingDetails")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class SpendingDetails {
+public class SpendingDetail {
 
     @GeneratedValue
     @Id
     private int id;
-    private SpendingTypes spendingTypes;
-    private BillTypes billTypes;
     private String productName;
     private double price;
     private String description;

@@ -1,5 +1,5 @@
 package tahafurkan.sandbox.familybudgetapp.enums;
 
 public enum SpendingTypes {
-    GROCERY, BILLS, SCHOOL, HEALTH;
+    GROCERY, BILLS, SCHOOL, HEALTH, TRANSPORTATION, CLOTHING, ENTERTAINMENT;
 }

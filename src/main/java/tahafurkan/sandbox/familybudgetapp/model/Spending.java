@@ -6,8 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Data;
-import tahafurkan.sandbox.familybudgetapp.repository.SpendingDetailsRepository;
+import tahafurkan.sandbox.familybudgetapp.enums.BillingTypes;
+import tahafurkan.sandbox.familybudgetapp.enums.SpendingTypes;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,14 +26,16 @@ public class Spending {
     @GeneratedValue
     @Id
     private Integer id;
-    private String date;
-    private double amount;
+    private Date date;
+    private double price;
+    private SpendingTypes type;
+    private BillingTypes billingType;
     @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private User user;
-    @OneToOne(targetEntity = SpendingDetails.class, cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "id")
-    private SpendingDetails spendingDetails;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "spending_id")
+    private List<SpendingDetail> details = new ArrayList<>();
 
 }
 
