@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Data;
+import tahafurkan.sandbox.familybudgetapp.repository.SpendingDetailsRepository;
+
+import java.util.List;
 
 
 @Entity
@@ -25,10 +28,9 @@ public class Spending {
     @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private User user;
-    @OneToOne(targetEntity = Spending.class , cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = SpendingDetails.class, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private SpendingDetails spendingDetails;
-
 
 }
 

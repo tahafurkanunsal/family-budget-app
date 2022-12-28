@@ -9,6 +9,8 @@ import lombok.Setter;
 import tahafurkan.sandbox.familybudgetapp.enums.BillTypes;
 import tahafurkan.sandbox.familybudgetapp.enums.SpendingTypes;
 
+import java.util.List;
+
 @Entity
 @Table(name = "spending details")
 @Data
@@ -26,6 +28,5 @@ public class SpendingDetails {
     private String productName;
     private double price;
     private String description;
-
 
 }
