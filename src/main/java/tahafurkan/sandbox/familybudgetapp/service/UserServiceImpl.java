@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
 
     @Override
     public User get(int id) {
-        return userRepository.findById(id).orElseThrow(() -> new NoSuchUserExistsException("NO USER PRESENT WITH ID ="  + id));
+        return userRepository.findById(id).orElseThrow(() -> new NoSuchUserExistsException("NO USER PRESENT WITH ID =" + id));
     }
 
     @Override
@@ -48,8 +48,9 @@ public class UserServiceImpl implements UserService{
         User updateUser = userRepository.save(existingUser);
         return updateUser;
     }
+
     @Override
-    public void delete(int id){
+    public void delete(int id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             userRepository.deleteById(id);
@@ -61,10 +62,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void checkUsername(String username) {
-        if (username.equalsIgnoreCase("another")) {
-            String msg = String.format("Username = '%s is cannot be used!", username);
-            throw new UsernameUnavailableException(msg);
-        }
         if (userRepository.existsByUsername(username)) {
             String msg = String.format("Username ='%s' is being used by another user!", username);
             throw new UsernameIsInUseException(msg);
