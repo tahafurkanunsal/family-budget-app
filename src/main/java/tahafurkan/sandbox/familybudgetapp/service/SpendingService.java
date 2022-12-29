@@ -10,4 +10,8 @@ public interface SpendingService {
     public List<Spending> getAll();
 
     public Spending create(Spending spending);
+
+    public List<Spending> getByUserId(Integer id);
+
+
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.exception.UsernameIsInUseException;
-import tahafurkan.sandbox.familybudgetapp.exception.UsernameUnavailableException;
 import tahafurkan.sandbox.familybudgetapp.model.User;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
@@ -12,14 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
 
     @Override
     public User get(int id) {
-        return userRepository.findById(id).orElseThrow(() -> new NoSuchUserExistsException("NO USER PRESENT WITH ID ="  + id));
+        return userRepository.findById(id).orElseThrow(() -> new NoSuchUserExistsException("NO USER PRESENT WITH ID =" + id));
     }
 
     @Override
@@ -48,8 +47,9 @@ public class UserServiceImpl implements UserService{
         User updateUser = userRepository.save(existingUser);
         return updateUser;
     }
+
     @Override
-    public void delete(int id){
+    public void delete(int id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             userRepository.deleteById(id);

@@ -22,4 +22,9 @@ public class SpendingServiceImpl implements SpendingService {
     public Spending create(Spending spending) {
         return spendingRepository.save(spending);
     }
+
+    @Override
+    public List<Spending> getByUserId(Integer id) {
+        return spendingRepository.findByUserId(id);
+    }
 }
