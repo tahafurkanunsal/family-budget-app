@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.exception.UsernameIsInUseException;
-import tahafurkan.sandbox.familybudgetapp.exception.UsernameUnavailableException;
 import tahafurkan.sandbox.familybudgetapp.model.User;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
