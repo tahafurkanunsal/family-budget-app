@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
-import tahafurkan.sandbox.familybudgetapp.service.SpendingService;
 import tahafurkan.sandbox.familybudgetapp.service.UserService;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/{id}/spendings")
-    public List<Spending> getUserSpendings(@PathVariable Integer id){
+    public List<Spending> getUserSpendings(@PathVariable Integer id) {
         return userService.getSpendingsByUserId(id);
     }
 
