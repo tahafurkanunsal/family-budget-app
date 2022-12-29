@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Spending> getByUserId(int id) {
+    public List<Spending> getSpendingsByUserId(Integer id) {
         return spendingRepository.findByUserId(id);
     }
 

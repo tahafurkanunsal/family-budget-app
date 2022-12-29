@@ -31,9 +31,9 @@ public class UserController {
         return userService.getByUsername(username);
     }
 
-    @GetMapping(value = "/users/{id}")
-    public List<Spending> getByUserId(@PathVariable int id){
-        return userService.getByUserId(id);
+    @GetMapping(value = "/users/{id}/spendings")
+    public List<Spending> getUserSpendings(@PathVariable Integer id){
+        return userService.getSpendingsByUserId(id);
     }
 
     @PostMapping(value = "/users")

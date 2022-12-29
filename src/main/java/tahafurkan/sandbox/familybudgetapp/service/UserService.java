@@ -13,7 +13,7 @@ public interface UserService {
 
     public User getByUsername(String username);
 
-    public List<Spending> getByUserId(int id);
+    public List<Spending> getSpendingsByUserId(Integer id);
 
     public User create(User user);
 
