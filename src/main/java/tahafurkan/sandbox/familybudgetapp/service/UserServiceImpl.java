@@ -61,14 +61,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void checkUsername(String username) {
-        if (username.equalsIgnoreCase("another")) {
-            String msg = String.format("Username = '%s is cannot be used!", username);
-            throw new UsernameUnavailableException(msg);
-        }
         if (userRepository.existsByUsername(username)) {
             String msg = String.format("Username ='%s' is being used by another user!", username);
             throw new UsernameIsInUseException(msg);
         }
-
     }
 }

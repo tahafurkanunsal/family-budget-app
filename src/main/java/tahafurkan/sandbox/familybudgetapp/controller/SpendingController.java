@@ -18,8 +18,15 @@ public class SpendingController {
     public List<Spending> getAll(){
         return spendingService.getAll();
     }
+
+
     @PostMapping(value = "/spendings")
     public Spending create(@RequestBody Spending spending){
         return spendingService.create(spending);
+    }
+
+    @GetMapping(value = "/spendings/{id}")
+    public List<Spending> getByUserId(@PathVariable Integer id){
+        return spendingService.getByUserId(id);
     }
 }
