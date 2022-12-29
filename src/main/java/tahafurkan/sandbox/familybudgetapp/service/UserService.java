@@ -1,5 +1,6 @@
 package tahafurkan.sandbox.familybudgetapp.service;
 
+import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
 
 import java.util.List;
@@ -11,6 +12,8 @@ public interface UserService {
     public List<User> getAll();
 
     public User getByUsername(String username);
+
+    public List<Spending> getSpendingsByUserId(Integer id);
 
     public User create(User user);
 

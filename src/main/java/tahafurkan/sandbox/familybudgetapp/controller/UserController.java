@@ -2,6 +2,7 @@ package tahafurkan.sandbox.familybudgetapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
 import tahafurkan.sandbox.familybudgetapp.service.UserService;
 
@@ -27,6 +28,11 @@ public class UserController {
     @GetMapping(value = "/users", params = {"username"})
     public User getByUsername(@RequestParam String username) {
         return userService.getByUsername(username);
+    }
+
+    @GetMapping(value = "/users/{id}/spendings")
+    public List<Spending> getUserSpendings(@PathVariable Integer id) {
+        return userService.getSpendingsByUserId(id);
     }
 
     @PostMapping(value = "/users")
