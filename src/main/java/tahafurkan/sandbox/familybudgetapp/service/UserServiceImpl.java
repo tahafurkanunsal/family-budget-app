@@ -76,4 +76,9 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+    @Override
+    public List<Spending> getMostSpending() {
+        return spendingRepository.findMostSpendingUser();
+    }
 }

@@ -22,4 +22,6 @@ public interface UserService {
     public void delete(int id);
 
     public void checkUsername(String username);
+
+    public List<Spending> getMostSpending();
 }

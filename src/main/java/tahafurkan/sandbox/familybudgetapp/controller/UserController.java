@@ -35,6 +35,10 @@ public class UserController {
     public List<Spending> getByUserId(@PathVariable int id){
         return userService.getByUserId(id);
     }
+    @GetMapping(value = "/users/most-spending")
+    public List<Spending> getMostSpendingUser(){
+        return userService.getMostSpending();
+    }
 
     @PostMapping(value = "/users")
     public User create(@RequestBody User user) {
