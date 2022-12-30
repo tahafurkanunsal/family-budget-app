@@ -41,6 +41,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getMostSpendingUser() {
+        User mostSpendingUser = spendingRepository.findMostSpendingUser();
+        return mostSpendingUser;
+    }
+
+    @Override
     public User create(User user) {
         checkUsername(user.getUsername());
         return userRepository.save(user);
