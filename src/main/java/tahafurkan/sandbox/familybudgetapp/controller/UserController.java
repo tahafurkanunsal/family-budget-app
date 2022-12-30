@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
-import tahafurkan.sandbox.familybudgetapp.service.SpendingService;
 import tahafurkan.sandbox.familybudgetapp.service.UserService;
 
 import java.util.List;
@@ -32,12 +31,13 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/{id}")
-    public List<Spending> getByUserId(@PathVariable int id){
+    public List<Spending> getByUserId(@PathVariable int id) {
         return userService.getByUserId(id);
     }
+
     @GetMapping(value = "/users/most-spending")
-    public List<Spending> getMostSpendingUser(){
-        return userService.getMostSpending();
+    public User getMostSpendingUser() {
+        return userService.getMostSpendingUser();
     }
 
     @PostMapping(value = "/users")
@@ -54,5 +54,6 @@ public class UserController {
     public void delete(@PathVariable int id) {
         userService.delete(id);
     }
+
 
 }
