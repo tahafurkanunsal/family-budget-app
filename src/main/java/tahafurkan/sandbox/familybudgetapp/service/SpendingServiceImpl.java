@@ -2,6 +2,8 @@ package tahafurkan.sandbox.familybudgetapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
@@ -9,6 +11,7 @@ import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingDto;
 import tahafurkan.sandbox.familybudgetapp.repository.SpendingRepository;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
+import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +29,12 @@ public class SpendingServiceImpl implements SpendingService {
         return spendingRepository.findAll();
     }
 
+    @Override
+    public List<Spending> getSpendingsByMonth(String spendingByMonth) {
+        Month monthEnum = Month.valueOf(spendingByMonth.toUpperCase());
+        int month = monthEnum.getValue();
+        return spendingRepository.findSpendingsByMonth(month);
+    }
 
     @Override
     public Spending create(SpendingDto spendingDto) {

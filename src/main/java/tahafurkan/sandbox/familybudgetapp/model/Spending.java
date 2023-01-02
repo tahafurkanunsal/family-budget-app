@@ -1,5 +1,6 @@
 package tahafurkan.sandbox.familybudgetapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Spending {
     @GeneratedValue
     @Id
     private Integer id;
+    @JsonFormat(pattern = "yyyy-MMM-dd")
     private Date date;
     private double price;
     private SpendingTypes type;

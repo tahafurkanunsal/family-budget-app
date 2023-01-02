@@ -6,6 +6,7 @@ import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingDto;
 import tahafurkan.sandbox.familybudgetapp.service.SpendingService;
 
+import java.time.Month;
 import java.util.List;
 
 @RestController
@@ -18,6 +19,11 @@ public class SpendingController {
     @GetMapping(value = "/spendings")
     public List<Spending> getAll() {
         return spendingService.getAll();
+    }
+
+    @GetMapping(value = "/spendings", params = {"spendingByMonth"})
+    public List<Spending> getSpendingsByMonth(@RequestParam String spendingByMonth) {
+        return spendingService.getSpendingsByMonth(spendingByMonth);
     }
 
     @PostMapping(value = "/spendings")
