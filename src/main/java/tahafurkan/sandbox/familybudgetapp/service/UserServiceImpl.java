@@ -40,11 +40,6 @@ public class UserServiceImpl implements UserService {
         return spendingRepository.findByUserId(id);
     }
 
-    @Override
-    public User getMostSpendingUser() {
-        User mostSpendingUser = spendingRepository.findMostSpendingUser();
-        return mostSpendingUser;
-    }
 
     @Override
     public User create(User user) {

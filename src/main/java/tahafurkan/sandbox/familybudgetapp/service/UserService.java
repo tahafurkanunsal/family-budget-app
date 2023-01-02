@@ -14,7 +14,6 @@ public interface UserService {
     public User getByUsername(String username);
 
     public List<Spending> getSpendingsByUserId(Integer id);
-    public User getMostSpendingUser();
 
     public User create(User user);
 
