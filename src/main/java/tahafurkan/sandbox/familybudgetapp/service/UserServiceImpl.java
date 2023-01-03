@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
         return spendingRepository.findByUserId(id);
     }
 
+
     @Override
     public User create(User user) {
         checkUsername(user.getUsername());
