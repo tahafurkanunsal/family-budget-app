@@ -40,6 +40,15 @@ public class UserServiceImpl implements UserService {
         return spendingRepository.findByUserId(id);
     }
 
+    @Override
+    public User findUserWithHighestTotalSpend() {
+        List<User> results = spendingRepository.findUsersWithHighestTotalSpend();
+        if (results.isEmpty()) {
+            return null;
+        }
+        return results.get(0);
+    }
+
 
     @Override
     public User create(User user) {

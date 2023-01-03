@@ -35,6 +35,11 @@ public class UserController {
         return userService.getSpendingsByUserId(id);
     }
 
+    @GetMapping(value = "/users/most-spending/spendings")
+    public User findUserWithHighestTotalSpend() {
+        return userService.findUserWithHighestTotalSpend();
+    }
+
     @PostMapping(value = "/users")
     public User create(@RequestBody User user) {
         return userService.create(user);
