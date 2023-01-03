@@ -11,7 +11,7 @@ import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingDto;
 import tahafurkan.sandbox.familybudgetapp.repository.SpendingRepository;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
-import java.time.Month;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,10 +30,8 @@ public class SpendingServiceImpl implements SpendingService {
     }
 
     @Override
-    public List<Spending> getSpendingsByMonth(String spendingByMonth) {
-        Month monthEnum = Month.valueOf(spendingByMonth.toUpperCase());
-        int month = monthEnum.getValue();
-        return spendingRepository.findSpendingsByMonth(month);
+    public List<Spending> getSpendingsByDate(Date startDate, Date endDate) {
+        return spendingRepository.findSpendingsAtBetween(startDate, endDate);
     }
 
     @Override
