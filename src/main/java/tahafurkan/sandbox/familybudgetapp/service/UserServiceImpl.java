@@ -59,6 +59,11 @@ public class UserServiceImpl implements UserService {
         return results.get(0);
     }
 
+    @Override
+    public List<Spending> findHighestTotalSpendDetailsByDate(Date startDate, Date endDate) {
+        return spendingRepository.findMostSpendingDetailsByDate(startDate , endDate);
+    }
+
 
     @Override
     public User create(User user) {

@@ -20,6 +20,8 @@ public interface UserService {
 
     public User findHighestTotalSpendOnGivenDate(Date startDate, Date endDate);
 
+    public List<Spending> findHighestTotalSpendDetailsByDate(Date startDate, Date endDate);
+
     public User create(User user);
 
     public User update(int id, User user);

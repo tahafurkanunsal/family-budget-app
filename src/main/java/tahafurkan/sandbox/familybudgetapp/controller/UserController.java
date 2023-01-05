@@ -47,6 +47,11 @@ public class UserController {
         return userService.findHighestTotalSpendOnGivenDate(startDate, endDate);
     }
 
+    @GetMapping(value = "/users/most-spending-details", params = {"startDate", "endDate"})
+    public List<Spending> findHighestTotalSpendDetailsByDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
+        return userService.findHighestTotalSpendDetailsByDate(startDate, endDate);
+    }
+
     @PostMapping(value = "/users")
     public User create(@RequestBody User user) {
         return userService.create(user);
