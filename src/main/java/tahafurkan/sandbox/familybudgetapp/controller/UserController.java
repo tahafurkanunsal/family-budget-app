@@ -35,7 +35,7 @@ public class UserController {
         return userService.getSpendingsByUserId(id);
     }
 
-    @GetMapping(value = "/users/most-spending/spendings")
+    @GetMapping(value = "/users/most-spending")
     public User findUserWithHighestTotalSpend() {
         return userService.findUserWithHighestTotalSpend();
     }
