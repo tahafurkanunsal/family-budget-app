@@ -3,6 +3,7 @@ package tahafurkan.sandbox.familybudgetapp.service;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -16,6 +17,8 @@ public interface UserService {
     public List<Spending> getSpendingsByUserId(Integer id);
 
     public User findUserWithHighestTotalSpend();
+
+    public User findHighestTotalSpendOnGivenDate(Date startDate, Date endDate);
 
     public User create(User user);
 

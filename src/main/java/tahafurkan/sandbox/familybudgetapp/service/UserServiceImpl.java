@@ -9,6 +9,7 @@ import tahafurkan.sandbox.familybudgetapp.model.User;
 import tahafurkan.sandbox.familybudgetapp.repository.SpendingRepository;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +44,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserWithHighestTotalSpend() {
         List<User> results = spendingRepository.findUsersWithHighestTotalSpend();
+        if (results.isEmpty()) {
+            return null;
+        }
+        return results.get(0);
+    }
+
+    @Override
+    public User findHighestTotalSpendOnGivenDate(Date startDate, Date endDate) {
+        List<User> results = spendingRepository.findMostSpendingByDate(startDate, endDate);
         if (results.isEmpty()) {
             return null;
         }
