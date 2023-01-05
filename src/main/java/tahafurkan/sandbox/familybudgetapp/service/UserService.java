@@ -15,6 +15,8 @@ public interface UserService {
 
     public List<Spending> getSpendingsByUserId(Integer id);
 
+    public User findUserWithHighestTotalSpend();
+
     public User create(User user);
 
     public User update(int id, User user);
