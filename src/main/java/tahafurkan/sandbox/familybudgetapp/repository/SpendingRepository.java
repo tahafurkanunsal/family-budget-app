@@ -19,4 +19,7 @@ public interface SpendingRepository extends JpaRepository<Spending, Integer> {
     @Query("SELECT s.user, SUM(s.price) as totalSpend FROM Spending s GROUP BY s.user ORDER BY totalSpend DESC")
     List<User> findUsersWithHighestTotalSpend();
 
+    @Query("Select s.user , SUM(s.price) as totalSpend FROM Spending s WHERE s.date BETWEEN :startDate and :endDate GROUP BY s.user ORDER BY totalSpend DESC")
+    List<User> findMostSpendingByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
 }

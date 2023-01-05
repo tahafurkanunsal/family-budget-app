@@ -1,11 +1,13 @@
 package tahafurkan.sandbox.familybudgetapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
 import tahafurkan.sandbox.familybudgetapp.service.UserService;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -38,6 +40,11 @@ public class UserController {
     @GetMapping(value = "/users/most-spending")
     public User findUserWithHighestTotalSpend() {
         return userService.findUserWithHighestTotalSpend();
+    }
+
+    @GetMapping(value = "/users/most-spending", params = {"startDate", "endDate"})
+    public User findHighestTotalSpendOnGivenDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
+        return userService.findHighestTotalSpendOnGivenDate(startDate, endDate);
     }
 
     @PostMapping(value = "/users")
