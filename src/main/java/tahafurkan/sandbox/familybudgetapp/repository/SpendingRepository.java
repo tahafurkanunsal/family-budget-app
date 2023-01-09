@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
+import tahafurkan.sandbox.familybudgetapp.model.dto.UserSpendingDetails;
 
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,8 @@ public interface SpendingRepository extends JpaRepository<Spending, Integer> {
     @Query("Select s.user , SUM(s.price) as totalSpend FROM Spending s WHERE s.date BETWEEN :startDate and :endDate GROUP BY s.user ORDER BY totalSpend DESC")
     List<User> findMostSpendingByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
-    @Query("SELECT s FROM Spending s WHERE s.price = (SELECT MAX(s.price) FROM Spending s WHERE s.date BETWEEN:startDate and :endDate)")
-    List<Spending> findMostSpendingDetailsByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    @Query("")
+    List<UserSpendingDetails> findMostSpendingDetailsByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
 
 }

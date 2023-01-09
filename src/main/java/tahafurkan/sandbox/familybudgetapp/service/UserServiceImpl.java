@@ -6,6 +6,7 @@ import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.exception.UsernameIsInUseException;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
+import tahafurkan.sandbox.familybudgetapp.model.dto.UserSpendingDetails;
 import tahafurkan.sandbox.familybudgetapp.repository.SpendingRepository;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
@@ -60,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Spending> findHighestTotalSpendDetailsByDate(Date startDate, Date endDate) {
+    public List<UserSpendingDetails> findHighestTotalSpendDetailsByDate(Date startDate, Date endDate) {
         return spendingRepository.findMostSpendingDetailsByDate(startDate , endDate);
     }
 
