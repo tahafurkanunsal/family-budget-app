@@ -6,13 +6,13 @@ import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.exception.UsernameIsInUseException;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
-import tahafurkan.sandbox.familybudgetapp.model.dto.UserSpendingDetails;
+import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingDetailDto;
+import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingDto;
+import tahafurkan.sandbox.familybudgetapp.model.dto.UserSpendingDto;
 import tahafurkan.sandbox.familybudgetapp.repository.SpendingRepository;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -61,10 +61,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserSpendingDetails> findHighestTotalSpendDetailsByDate(Date startDate, Date endDate) {
-        return spendingRepository.findMostSpendingDetailsByDate(startDate , endDate);
-    }
+    public List<UserSpendingDto> findHighestTotalSpendDetailsByDate(Date startDate, Date endDate) {
+        List<Spending> spendingList = spendingRepository.findMostSpendingDetailsByDate(startDate, endDate);
 
+        User mostSpendingUser = spendingList.get(0).getUser();
+
+        List<SpendingDto> spendingDtos = new ArrayList<>();
+        List<UserSpendingDto> userSpendingDtos = new ArrayList<>();
+
+        for (Spending spending : spendingList) {
+            if (spending.getUser().getId() == mostSpendingUser.getId()) {
+                List<SpendingDetailDto> spendingDetailDtos = new ArrayList<>();
+                SpendingDetailDto spendingDetailDto = new SpendingDetailDto();
+                spendingDetailDto.setSpendingDetails(spending.getDetails());
+                spendingDetailDtos.add(spendingDetailDto);
+
+
+                SpendingDto spendingDto = new SpendingDto();
+                spendingDto.setId(spending.getId());
+                spendingDto.setDate(spending.getDate());
+                spendingDto.setType(spending.getType());
+                spendingDto.setPrice(spending.getPrice());
+                spendingDto.setSpendingDetailDto(spendingDetailDtos);
+                spendingDtos.add(spendingDto);
+            }
+        }
+
+        UserSpendingDto userSpendingDto = new UserSpendingDto();
+        userSpendingDto.setUserId(mostSpendingUser.getId());
+        userSpendingDto.setFullName(mostSpendingUser.getFirstName() + " " + mostSpendingUser.getLastName());
+        userSpendingDto.setSpendings(spendingDtos);
+        userSpendingDtos.add(userSpendingDto);
+        return userSpendingDtos;
+    }
 
     @Override
     public User create(User user) {

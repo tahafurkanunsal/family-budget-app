@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
-import tahafurkan.sandbox.familybudgetapp.model.dto.UserSpendingDetails;
+import tahafurkan.sandbox.familybudgetapp.model.dto.UserSpendingDto;
 import tahafurkan.sandbox.familybudgetapp.service.UserService;
 
 import java.util.Date;
@@ -44,12 +44,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/most-spending", params = {"startDate", "endDate"})
-    public User findHighestTotalSpendOnGivenDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
+    public User findHighestTotalSpendOnGivenDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date startDate,
+                                                 @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
         return userService.findHighestTotalSpendOnGivenDate(startDate, endDate);
     }
 
     @GetMapping(value = "/users/most-spending-details", params = {"startDate", "endDate"})
-    public List<UserSpendingDetails> findHighestTotalSpendDetailsByDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
+    public List<UserSpendingDto> findHighestTotalSpendDetailsByDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date startDate,
+                                                                    @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
         return userService.findHighestTotalSpendDetailsByDate(startDate, endDate);
     }
 
