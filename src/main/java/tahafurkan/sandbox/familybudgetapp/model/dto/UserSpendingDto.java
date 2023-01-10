@@ -1,8 +1,8 @@
 package tahafurkan.sandbox.familybudgetapp.model.dto;
 
 import lombok.*;
-import tahafurkan.sandbox.familybudgetapp.model.Spending;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -10,11 +10,9 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserSpendingDetails {
+public class UserSpendingDto {
 
     private Integer userId;
-    private String name;
-    private List<Spending> spendings;
-
-
+    private String fullName;
+    List<SpendingDto> spendings = new ArrayList<>();
 }

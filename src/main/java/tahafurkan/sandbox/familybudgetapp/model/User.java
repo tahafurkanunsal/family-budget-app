@@ -21,7 +21,7 @@ public class User {
     private Integer id;
     private String firstName;
     private String lastName;
-    @Column(unique = true)
+    @Column(unique = true, length = 100)
     private String username;
 
 }

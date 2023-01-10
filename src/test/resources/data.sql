@@ -9,4 +9,4 @@ INSERT INTO spendings (id,  date , price ,type ,billing_type ,user_id) VALUES (1
 INSERT INTO spendings (id,  date , price ,type ,billing_type ,user_id) VALUES (109, '2001-06-15' , 900 ,  0, NULL , 2 );
 INSERT INTO spendings (id,  date , price ,type ,billing_type ,user_id) VALUES (110, '2001-06-15' , 400 ,  0, NULL , 1 );
 INSERT INTO spendings (id,  date , price ,type ,billing_type ,user_id) VALUES (111, '2001-06-15' , 1200,  0, NULL , 3 );
-INSERT INTO spendings (id, date , price ,type ,billing_type ,user_id)   VALUES (120, '2001-06-15' , 350 , 1, NULL , 1 );
+INSERT INTO spendings (id,  date , price ,type ,billing_type ,user_id) VALUES (120, '2001-06-15' , 350 ,  1, NULL , 1 );

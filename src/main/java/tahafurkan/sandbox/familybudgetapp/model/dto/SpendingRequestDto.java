@@ -1,6 +1,8 @@
 package tahafurkan.sandbox.familybudgetapp.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import tahafurkan.sandbox.familybudgetapp.enums.BillingTypes;
 import tahafurkan.sandbox.familybudgetapp.enums.SpendingTypes;
 import tahafurkan.sandbox.familybudgetapp.model.SpendingDetail;
 
@@ -13,11 +15,13 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SpendingDto {
+public class SpendingRequestDto {
 
-    private Integer id;
-    private SpendingTypes type;
+    @JsonFormat(pattern = "yyyy-MMM-dd")
     private Date date;
     private double price;
-    List<SpendingDetailDto> spendingDetailDto = new ArrayList<>();
+    private SpendingTypes type;
+    private BillingTypes billingType;
+    private Integer userId;
+    private List<SpendingDetail> details = new ArrayList<>();
 }
