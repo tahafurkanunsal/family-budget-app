@@ -26,6 +26,8 @@ public interface UserService {
 
     public User findHighestGrocerySpendingWithGivenDate(Date startDate, Date endDate, SpendingTypes type);
 
+    public List<User> sortUsersBySpendingSize();
+
     public User create(User user);
 
     public User update(int id, User user);

@@ -34,5 +34,7 @@ public interface SpendingRepository extends JpaRepository<Spending, Integer> {
     List<User> findMostGrocerySpendingByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate,
                                              @Param("type") SpendingTypes type);
 
+    @Query("Select s.user , SUM(s.price) AS totalSpend From Spending s GROUP BY s.user ORDER BY totalSpend DESC")
+    List<User> sortUsersBySpendingSize();
 
 }

@@ -63,6 +63,12 @@ public class UserController {
         return userService.findHighestGrocerySpendingWithGivenDate(startDate, endDate, type);
     }
 
+    @GetMapping(value = "/users/sort-spending")
+    public List<User> sortUsersBySpendingSize() {
+        return userService.sortUsersBySpendingSize();
+    }
+
+
     @PostMapping(value = "/users")
     public User create(@RequestBody User user) {
         return userService.create(user);
