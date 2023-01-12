@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
         List<UserSpendingDto> userSpendingDtos = new ArrayList<>();
 
         for (Spending spending : spendingList) {
-            if (spending.getUser().getId() == mostSpendingUser.getId()) {
+
                 List<SpendingDetailDto> spendingDetailDtos = new ArrayList<>();
                 SpendingDetailDto spendingDetailDto = new SpendingDetailDto();
                 spendingDetailDto.setSpendingDetails(spending.getDetails());
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
                 spendingDto.setPrice(spending.getPrice());
                 spendingDto.setSpendingDetailDto(spendingDetailDtos);
                 spendingDtos.add(spendingDto);
-            }
+
         }
 
         UserSpendingDto userSpendingDto = new UserSpendingDto();
