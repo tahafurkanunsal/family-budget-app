@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
-import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingDto;
+import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingRequestDto;
 import tahafurkan.sandbox.familybudgetapp.repository.SpendingRepository;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
@@ -33,7 +33,7 @@ public class SpendingServiceImpl implements SpendingService {
     }
 
     @Override
-    public Spending create(SpendingDto spendingDto) {
+    public Spending create(SpendingRequestDto spendingDto) {
         Spending spending = new Spending();
 
         spending.setDate(spendingDto.getDate());
@@ -51,6 +51,5 @@ public class SpendingServiceImpl implements SpendingService {
         }
 
         return spendingRepository.save(spending);
-
     }
 }

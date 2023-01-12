@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
-import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingDto;
+import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingRequestDto;
 import tahafurkan.sandbox.familybudgetapp.service.SpendingService;
 
 import java.util.Date;
@@ -23,12 +23,13 @@ public class SpendingController {
     }
 
     @GetMapping(value = "/spendings", params = {"startDate", "endDate"})
-    public List<Spending> getSpendingsByDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
+    public List<Spending> getSpendingsByDate(@RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date startDate,
+                                             @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
         return spendingService.getSpendingsByDate(startDate, endDate);
     }
 
     @PostMapping(value = "/spendings")
-    public Spending create(@RequestBody SpendingDto spendingDto) {
+    public Spending create(@RequestBody SpendingRequestDto spendingDto) {
         return spendingService.create(spendingDto);
     }
 }
