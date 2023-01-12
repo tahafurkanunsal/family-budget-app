@@ -2,6 +2,7 @@ package tahafurkan.sandbox.familybudgetapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tahafurkan.sandbox.familybudgetapp.enums.SpendingTypes;
 import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.exception.UsernameIsInUseException;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
@@ -93,6 +94,15 @@ public class UserServiceImpl implements UserService {
         userSpendingDto.setSpendings(spendingDtos);
         userSpendingDtos.add(userSpendingDto);
         return userSpendingDtos;
+    }
+
+    @Override
+    public User findHighestGrocerySpendingWithGivenDate(Date startDate, Date endDate, SpendingTypes type) {
+        List<User> results = spendingRepository.findMostGrocerySpendingByDate(startDate, endDate, type);
+        if (results.isEmpty()) {
+            return null;
+        }
+        return results.get(0);
     }
 
     @Override
