@@ -71,19 +71,19 @@ public class UserServiceImpl implements UserService {
 
         for (Spending spending : spendingList) {
 
-                List<SpendingDetailDto> spendingDetailDtos = new ArrayList<>();
-                SpendingDetailDto spendingDetailDto = new SpendingDetailDto();
-                spendingDetailDto.setSpendingDetails(spending.getDetails());
-                spendingDetailDtos.add(spendingDetailDto);
+            List<SpendingDetailDto> spendingDetailDtos = new ArrayList<>();
+            SpendingDetailDto spendingDetailDto = new SpendingDetailDto();
+            spendingDetailDto.setSpendingDetails(spending.getDetails());
+            spendingDetailDtos.add(spendingDetailDto);
 
 
-                SpendingDto spendingDto = new SpendingDto();
-                spendingDto.setId(spending.getId());
-                spendingDto.setDate(spending.getDate());
-                spendingDto.setType(spending.getType());
-                spendingDto.setPrice(spending.getPrice());
-                spendingDto.setSpendingDetailDto(spendingDetailDtos);
-                spendingDtos.add(spendingDto);
+            SpendingDto spendingDto = new SpendingDto();
+            spendingDto.setId(spending.getId());
+            spendingDto.setDate(spending.getDate());
+            spendingDto.setType(spending.getType());
+            spendingDto.setPrice(spending.getPrice());
+            spendingDto.setSpendingDetailDto(spendingDetailDtos);
+            spendingDtos.add(spendingDto);
 
         }
 
