@@ -106,6 +106,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> sortUsersBySpendingSize() {
+        return spendingRepository.sortUsersBySpendingSize();
+    }
+
+    @Override
     public User create(User user) {
         checkUsername(user.getUsername());
         return userRepository.save(user);
