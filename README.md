@@ -148,8 +148,3 @@ Ve cevap su sekilde olacaktır;
         ]       
 }
 ```
-
-
-
-
-
