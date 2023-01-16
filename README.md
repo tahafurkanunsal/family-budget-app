@@ -25,7 +25,7 @@ gerekir.
 
 ## API Hakkında
 
-### Kullanıcılar Olusturma
+### Kullanıcı Olusturma
 
 ```
 POST /api/users HTTP/1.1
