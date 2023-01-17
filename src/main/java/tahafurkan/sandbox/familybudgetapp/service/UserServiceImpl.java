@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     SpendingRepository spendingRepository;
 
-    private static final Logger logger = (Logger) LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
     public User get(int id) {
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     public User findUserWithHighestTotalSpend() {
         List<User> results = spendingRepository.findUsersWithHighestTotalSpend();
         if (results.isEmpty()) {
-            logger.info("there is no such user list ");
+            logger.warn("there is no such user list ");
             return null;
         }
         logger.info("Top spender in user : {}" , results.get(0));
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     public User findHighestTotalSpendOnGivenDate(Date startDate, Date endDate) {
         List<User> results = spendingRepository.findMostSpendingByDate(startDate, endDate);
         if (results.isEmpty()) {
-            logger.info("there is no such user list");
+            logger.warn("there is no such user list");
             return null;
         }
         logger.info("Top spender in date range : {} , {} , {}" ,startDate , endDate, results.get(0));
@@ -114,7 +114,7 @@ public class UserServiceImpl implements UserService {
     public User findHighestGrocerySpendingWithGivenDate(Date startDate, Date endDate, SpendingTypes type) {
         List<User> results = spendingRepository.findMostGrocerySpendingByDate(startDate, endDate, type);
         if (results.isEmpty()) {
-            logger.info("There is no such user list");
+            logger.warn("There is no such user list");
             return null;
         }
         logger.info("Top grocery spender: {}" , results.get(0));
@@ -154,7 +154,7 @@ public class UserServiceImpl implements UserService {
             userRepository.deleteById(id);
         } else {
             String msg = String.format(" ID = %d , this ID does not exist  ", id);
-            logger.info(msg);
+            logger.warn(msg);
             throw new NoSuchUserExistsException(msg);
         }
     }

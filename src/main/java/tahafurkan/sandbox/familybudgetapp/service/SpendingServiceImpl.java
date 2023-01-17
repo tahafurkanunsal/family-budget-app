@@ -21,7 +21,7 @@ public class SpendingServiceImpl implements SpendingService {
     @Autowired
     SpendingRepository spendingRepository;
 
-    private static final Logger logger = (Logger) LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpendingServiceImpl.class);
 
     @Autowired
     UserRepository userRepository;
