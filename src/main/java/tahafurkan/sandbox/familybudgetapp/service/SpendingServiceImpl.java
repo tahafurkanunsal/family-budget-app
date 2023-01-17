@@ -1,5 +1,7 @@
 package tahafurkan.sandbox.familybudgetapp.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
@@ -19,16 +21,20 @@ public class SpendingServiceImpl implements SpendingService {
     @Autowired
     SpendingRepository spendingRepository;
 
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Autowired
     UserRepository userRepository;
 
     @Override
     public List<Spending> getAll() {
+        logger.info("Find all spendings");
         return spendingRepository.findAll();
     }
 
     @Override
     public List<Spending> getSpendingsByDate(Date startDate, Date endDate) {
+        logger.info("spendings by date : {} , {}" , startDate , endDate);
         return spendingRepository.findSpendingsAtBetween(startDate, endDate);
     }
 
@@ -49,7 +55,7 @@ public class SpendingServiceImpl implements SpendingService {
         } else {
             throw new NoSuchUserExistsException("NO USER PRESENT WITH ID =" + spendingDto.getUserId());
         }
-
+        logger.info("Created new spendings by user id : {}" , spending.getUser().getId());
         return spendingRepository.save(spending);
     }
 }

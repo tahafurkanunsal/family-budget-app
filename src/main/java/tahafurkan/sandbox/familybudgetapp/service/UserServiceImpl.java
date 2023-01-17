@@ -1,7 +1,10 @@
 package tahafurkan.sandbox.familybudgetapp.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tahafurkan.sandbox.familybudgetapp.controller.UserController;
 import tahafurkan.sandbox.familybudgetapp.enums.SpendingTypes;
 import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.exception.UsernameIsInUseException;
@@ -23,23 +26,29 @@ public class UserServiceImpl implements UserService {
     @Autowired
     SpendingRepository spendingRepository;
 
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Override
     public User get(int id) {
+        logger.info("Find user by id: {}", id);
         return userRepository.findById(id).orElseThrow(() -> new NoSuchUserExistsException("NO USER PRESENT WITH ID =" + id));
     }
 
     @Override
     public List<User> getAll() {
+        logger.info("Find all users");
         return userRepository.findAll();
     }
 
     @Override
     public User getByUsername(String username) {
+        logger.info("Find user by username: {}", username);
         return userRepository.findByUsername(username);
     }
 
     @Override
     public List<Spending> getSpendingsByUserId(Integer id) {
+        logger.info("Find spendings by user id: {}", id);
         return spendingRepository.findByUserId(id);
     }
 
@@ -47,8 +56,10 @@ public class UserServiceImpl implements UserService {
     public User findUserWithHighestTotalSpend() {
         List<User> results = spendingRepository.findUsersWithHighestTotalSpend();
         if (results.isEmpty()) {
+            logger.info("there is no such user list ");
             return null;
         }
+        logger.info("Top spender in user : {}" , results.get(0));
         return results.get(0);
     }
 
@@ -56,8 +67,10 @@ public class UserServiceImpl implements UserService {
     public User findHighestTotalSpendOnGivenDate(Date startDate, Date endDate) {
         List<User> results = spendingRepository.findMostSpendingByDate(startDate, endDate);
         if (results.isEmpty()) {
+            logger.info("there is no such user list");
             return null;
         }
+        logger.info("Top spender in date range : {} , {} , {}" ,startDate , endDate, results.get(0));
         return results.get(0);
     }
 
@@ -93,6 +106,7 @@ public class UserServiceImpl implements UserService {
         userSpendingDto.setFullName(mostSpendingUser.getFirstName() + " " + mostSpendingUser.getLastName());
         userSpendingDto.setSpendings(spendingDtos);
         userSpendingDtos.add(userSpendingDto);
+        logger.info("Top spender and spending details in the date range: {} " , userSpendingDtos);
         return userSpendingDtos;
     }
 
@@ -100,19 +114,23 @@ public class UserServiceImpl implements UserService {
     public User findHighestGrocerySpendingWithGivenDate(Date startDate, Date endDate, SpendingTypes type) {
         List<User> results = spendingRepository.findMostGrocerySpendingByDate(startDate, endDate, type);
         if (results.isEmpty()) {
+            logger.info("There is no such user list");
             return null;
         }
+        logger.info("Top grocery spender: {}" , results.get(0));
         return results.get(0);
     }
 
     @Override
     public List<User> sortUsersBySpendingSize() {
+        logger.info("Users sorted by spending size");
         return spendingRepository.sortUsersBySpendingSize();
     }
 
     @Override
     public User create(User user) {
         checkUsername(user.getUsername());
+        logger.info("Created a user : {} " , user);
         return userRepository.save(user);
     }
 
@@ -124,6 +142,7 @@ public class UserServiceImpl implements UserService {
         existingUser.setUsername(user.getUsername());
         checkUsername(existingUser.getUsername());
         User updateUser = userRepository.save(existingUser);
+        logger.info("updated user by id : {}" , id);
         return updateUser;
     }
 
@@ -131,9 +150,11 @@ public class UserServiceImpl implements UserService {
     public void delete(int id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
+            logger.info("deleted user by id : {} ", id);
             userRepository.deleteById(id);
         } else {
             String msg = String.format(" ID = %d , this ID does not exist  ", id);
+            logger.info(msg);
             throw new NoSuchUserExistsException(msg);
         }
     }
