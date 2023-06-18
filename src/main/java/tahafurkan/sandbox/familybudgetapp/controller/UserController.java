@@ -14,13 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")
+@CrossOrigin("http://localhost:4200")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "/users", params = {"id"})
-    public User get(@RequestParam int id) {
+
+    @GetMapping(value = "/users/{id}")
+    public User get(@PathVariable("id") int id) {
         return userService.get(id);
     }
 
