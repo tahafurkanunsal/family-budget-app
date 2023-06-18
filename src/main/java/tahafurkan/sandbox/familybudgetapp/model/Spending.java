@@ -24,7 +24,7 @@ import java.util.List;
 @Setter
 public class Spending {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
     @JsonFormat(pattern = "yyyy-MMM-dd")
@@ -32,7 +32,7 @@ public class Spending {
     private double price;
     private SpendingTypes type;
     private BillingTypes billingType;
-    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(referencedColumnName = "id")
     private User user;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

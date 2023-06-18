@@ -16,11 +16,11 @@ import lombok.Setter;
 @Setter
 public class SpendingDetail {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
     private String productName;
-    private double price;
+    private double detailPrice;
     private String description;
 
 }
