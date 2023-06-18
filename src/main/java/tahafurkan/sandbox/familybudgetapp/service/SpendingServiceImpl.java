@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tahafurkan.sandbox.familybudgetapp.exception.NoSuchSpendingExistsException;
 import tahafurkan.sandbox.familybudgetapp.exception.NoSuchUserExistsException;
 import tahafurkan.sandbox.familybudgetapp.model.Spending;
 import tahafurkan.sandbox.familybudgetapp.model.User;
@@ -11,9 +12,9 @@ import tahafurkan.sandbox.familybudgetapp.model.dto.SpendingRequestDto;
 import tahafurkan.sandbox.familybudgetapp.repository.SpendingRepository;
 import tahafurkan.sandbox.familybudgetapp.repository.UserRepository;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class SpendingServiceImpl implements SpendingService {
@@ -57,5 +58,20 @@ public class SpendingServiceImpl implements SpendingService {
         }
         logger.info("Created new spendings by user id : {}" , spending.getUser().getId());
         return spendingRepository.save(spending);
+    }
+    @Override
+    public void delete(int id) {
+        Optional<Spending> spending = spendingRepository.findById(id);
+
+        if (spending.isPresent()) {
+            Spending existingSpending = spending.get();
+            logger.info("Deleted spending by id: {}", id);
+
+            spendingRepository.deleteById(id);
+        } else {
+            String msg = String.format("ID = %d, this ID does not exist", id);
+            logger.warn(msg);
+            throw new NoSuchSpendingExistsException(msg);
+        }
     }
 }

@@ -11,6 +11,6 @@ public interface SpendingService {
     public List<Spending> getAll();
 
     public List<Spending> getSpendingsByDate(Date startDate, Date endDate);
-
     public Spending create(SpendingRequestDto spendingRequestDto);
+    public void delete(int id);
 }
