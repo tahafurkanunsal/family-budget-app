@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin("http://localhost:4200")
 public class SpendingController {
 
     @Autowired
@@ -27,9 +28,14 @@ public class SpendingController {
                                              @RequestParam @DateTimeFormat(pattern = "yyyy-MMM-dd") Date endDate) {
         return spendingService.getSpendingsByDate(startDate, endDate);
     }
-
     @PostMapping(value = "/spendings")
     public Spending create(@RequestBody SpendingRequestDto spendingDto) {
         return spendingService.create(spendingDto);
     }
+
+    @DeleteMapping(value = "/spendings/{id}")
+    public void delete(@PathVariable int id) {
+        spendingService.delete(id);
+    }
+
 }
